@@ -29,7 +29,11 @@ ActiveRecord::Schema.define(version: 2022_09_06_194225) do
     t.string "genre_name"
     t.datetime "created_at"
   end
-
+  class Song <ActiveRecord::Base
+    belongs_to :artist
+    belongs_to :album
+    belongs_to :genre
+end
   create_table "songs", force: :cascade do |t|
     t.string "title"
     t.integer "artist_id"
