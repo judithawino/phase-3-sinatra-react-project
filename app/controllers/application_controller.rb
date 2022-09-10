@@ -8,4 +8,10 @@ class ApplicationController < Sinatra::Base
   hometown: "London" }.to_json
   end
 
+  get "/artists" do
+    artists = Artist.all
+    artists.to_json
+  end
+  
+
 end
