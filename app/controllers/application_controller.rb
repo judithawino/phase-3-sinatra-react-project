@@ -12,6 +12,9 @@ class ApplicationController < Sinatra::Base
     artists = Artist.all
     artists.to_json
   end
-  
+  get "/albums" do
+    albums = Album.all
+    albums.to_json
+  end
 
 end
