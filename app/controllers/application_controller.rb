@@ -13,6 +13,17 @@ class ApplicationController < Sinatra::Base
     artists.to_json(only: [:id, :name, :birth_date, :hometown, :country], include: {     
         albums: { only: [:id, :album_name] }
       } 
-    )
-  end    
+    )    
+  end
+
+  get '/artists/:id' do
+      artist = Artist.find(params[:id])
+  
+      # include associated reviews in the JSON response
+      artist.to_json(include: {albums: {only: [:id, :album_name]}})
+    end
+
 end
+
+  
+  
