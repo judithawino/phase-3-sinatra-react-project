@@ -9,12 +9,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/artists" do
-    artists = Artist.all
-    artists.to_json
-  end
-  get "/albums" do
-    albums = Album.all
-    albums.to_json
-  end
-
+    artists = Artist.all.order(:name).limit(15)
+    artists.to_json(only: [:id, :name, :birth_date, :hometown, :country], include: {     
+        albums: { only: [:id, :album_name] }
+      } 
+    )
+  end    
 end
