@@ -33,6 +33,12 @@ class ApplicationController < Sinatra::Base
     genre.to_json
   end
 
+  get '/songs' do
+  song = Song.all.order(:title).limit(100)
+
+  # include associated reviews in the JSON response  
+  song.to_json(only: [:id, :title, :has_lyrics ], include: { artist: {only: [:id, :name], include: {genres: {only: [:id, :genre_name] } }} })
+  end
 end
 
 
