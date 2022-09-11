@@ -21,9 +21,24 @@ class ApplicationController < Sinatra::Base
   
       # include associated reviews in the JSON response
       artist.to_json(include: {albums: {only: [:id, :album_name]}})
-    end
+  end
+
+  get "/albums" do
+      albums = Album.all.order(:album_name).limit(20)
+      albums.to_json(except: [:artist_id], include: {artist: {only: [:id, :name]}})
+  end
+
+  get '/genres' do
+    genre = Genre.all.order(:genre_name).limit(10)
+    genre.to_json
+  end
 
 end
+
+
+
+
+
 
   
   
