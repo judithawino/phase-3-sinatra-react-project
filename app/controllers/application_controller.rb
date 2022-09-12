@@ -39,6 +39,32 @@ class ApplicationController < Sinatra::Base
   # include associated reviews in the JSON response  
   song.to_json(only: [:id, :title, :has_lyrics ], include: { artist: {only: [:id, :name], include: {genres: {only: [:id, :genre_name] } }} })
   end
+
+  post '/songs' do
+    song = Song.create(
+      title: params[:title],
+      artist_id: params[:artist_id],
+      album_id: params[:album_id],
+      genre_id: params[:genre_id],
+      has_lyrics: params[:has_lyrics]
+    )
+    song.to_json
+  end
+
+  patch '/songs/:id' do
+    song = Song.find(params[:id])
+    song.update(
+      title: params[:title],
+      has_lyrics: params[:has_lyrics]
+    )
+    song.to_json
+  end
+
+  delete '/songs/:id' do
+    songs = Song.find(params[:id])
+    songs.destroy
+    songs.to_json
+  end
 end
 
 
