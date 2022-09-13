@@ -20,9 +20,11 @@ You can start your server with:
 ```console
 $ bundle exec rake server
 ```
-
 This will run your server on port
 [http://localhost:9292](http://localhost:9292).
+Hosted API links
+Song: https://trendy1-music-librabry.herokuapp.com/songs
+Artist: https://trendy1-music-librabry.herokuapp.com/artists
 
 ### Frontend Setup
 git hub repository for frontend: https://github.com/judithawino/music-library.git
